@@ -1,2 +1,2 @@
-# Simulink-TEP
- Simulink model of the Tennessee Eastman Process
+# COSTEP
+ This is a complete and open Simulink model of the Tennessee Eastman Process
