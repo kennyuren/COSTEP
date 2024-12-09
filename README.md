@@ -1,5 +1,6 @@
-# The Complete and Open Simulink Model of the Tennessee Eastman Process
+## The Complete and Open Simulink Model of the Tennessee Eastman Process
 ## **1. Introduction**
+
 
 The complete and open Simulink of the Tennessee Eastman process (COSTEP) model is an open and flexible Simulink model designed for generating data to support various process control and fault detection experiments and analyses. Users of the model can configure parameters to their choosing by changing starting value or implement new functions using the base model parameters. This guide will provide detailed instructions on configuring and running the model, as well as explaining the resulting data for better use in specific experimental goals.
 
@@ -35,6 +36,8 @@ To conduct an experiment, create a dedicated block in Simulink to execute your c
 - Navigate to the _Disturbance off/on_ block in Simulink.
 - Select the desired disturbance or fault and specify its activation time (e.g., 200 seconds).
 
+![Control block](images/Simulink_block_Disturbances.jpg)
+
 #### **3.2.2 Control Loop Block**
 
 Currently the model is setup to be able to run the process using the following control mode selection:
@@ -46,7 +49,8 @@ Currently the model is setup to be able to run the process using the following c
 
 The control mode selection can be done by changing the block parameters of the control mode block as can be seen in the figure below. The initial valve positions can also be specified or changed if needed. 
 
-![[Pasted image 20241205070520.png]]
+![Control block](images/Simulink_block_control_mode.jpg)
+
 #### **3.2.3 Mode of Operation**
 
 - Configure feed streams A, C, D, and E to set the operating mode.
@@ -63,7 +67,7 @@ The control mode selection can be done by changing the block parameters of the c
     
     `set_param('COSTEP/RandomNumber', 'Seed', '12345');`
     
-
+![Control block](images/Simulink_block_random_number.jpg)
 #### **3.2.6 Simulation Time
 
 - Specify the solver and simulation time:
@@ -152,65 +156,117 @@ Export the simulation results to external files for further analysis:
     `save('results.mat', 'workspaceVariables');`
     
 
-| COSTEP Result Variable | Description                                                             | Other Name | Unit  |
-| ---------------------- | ----------------------------------------------------------------------- | ---------- | ----- |
-| SMEAST(1)              | Temperature of feed stream of component A (stream 1)                    |            | &degC |
-| SMEASP(1)              | Pressure of feed stream of component A (stream 1)                       |            | kPa   |
-| SMEASF(1)              | Mass flow of feed stream of component A (stream 1)                      | XMEAS(1)   | kg/h  |
-| SMEASXA(1)             | Composition of component A in feed stream of component A (stream 1)     |            | mol%  |
-| SMEASXB(1)             | Composition of component B in feed stream of component A (stream 1)     |            | mol%  |
-| SMEAST(2)              | Temperature of feed stream of component D (stream 2)                    |            | &degC |
-| SMEASP(2)              | Pressure of feed stream of component D (stream 2)                       |            | kPa   |
-| SMEASF(2)              | Mass flow of feed stream of component D (stream 2)                      | XMEAS(2)   | kg/h  |
-| SMEASXB(2)             | Composition of component B in feed stream of component D (stream 2)     |            | mol%  |
-| SMEASXD(2)             | Composition of component D in feed stream of component D (stream 2)     |            | mol%  |
-| SMEAST(3)              | Temperature of feed stream of component E (stream 3)                    |            | &degC |
-| SMEASP(3)              | Pressure of feed stream of component E (stream 3)                       |            | kPa   |
-| SMEASF(3)              | Mass flow of feed stream of component E (stream 3)                      | XMEAS(3)   | kg/h  |
-| SMEASXE(3)             | Composition of component E in feed stream of component E (stream 3)     |            | mol%  |
-| SMEASXF(3)             | Composition of component F in feed stream of component E (stream 3)     |            | mol%  |
-| SMEAST(4)              | Temperature of feed stream of component A/B/C (stream 4)                |            | &degC |
-| SMEASP(4)              | Pressure of feed stream of component A/B/C (stream 4)                   |            | kPa   |
-| SMEASF(4)              | Mass flow of feed stream of component A/B/C (stream 4)                  | XMEAS(4)   | kg/h  |
-| SMEASXA(4)             | Composition of component A in feed stream of component A/B/C (stream 4) |            | mol%  |
-| SMEASXB(4)             | Composition of component B in feed stream of component A/B/C (stream 4) |            | mol%  |
-| SMEASXC(4)             | Composition of component C in feed stream of component A/B/C (stream 4) |            | mol%  |
-| SMEAST(5)              | Temperature of stripper recycle stream (stream 5)                       |            | &degC |
-| SMEASP(5)              | Pressure of stripper recycle stream (stream 5)                          | XMEAS(16)  | kPa   |
-| SMEASF(5)              | Mass flow of stripper recycle stream (stream 5)                         |            | kg/h  |
-| SMEASXA(5)             | Composition of component A in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEASXB(5)             | Composition of component B in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEASXC(5)             | Composition of component C in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEASXD(5)             | Composition of component D in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEASXE(5)             | Composition of component E in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEASXF(5)             | Composition of component F in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEASXG(5)             | Composition of component G in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEASXH(5)             | Composition of component H in stripper recycle stream (stream 5)        |            | mol%  |
-| SMEAST(6)              | Temperature of reactor feed stream (stream 6)                           |            | &degC |
-| SMEASP(6)              | Pressure of reactor feed stream (stream 6)                              | XMEAS(16)  | kPa   |
-| SMEASF(6)              | Mass flow of reactor feed stream (stream 6)                             | XMEAS(6)   | kg/h  |
-| SMEASXA(6)             | Composition of component A in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXB(6)             | Composition of component B in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXC(6)             | Composition of component C in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXD(6)             | Composition of component D in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXE(6)             | Composition of component E in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXF(6)             | Composition of component F in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXG(6)             | Composition of component G in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXH(6)             | Composition of component H in reactor feed stream (stream 6)            |            | mol%  |
-| SMEAST(7)              | Temperature of reactor feed stream (stream 6)                           |            | &degC |
-| SMEASP(7)              | Pressure of reactor feed stream (stream 6)                              | XMEAS(16)  | kPa   |
-| SMEASF(7)              | Mass flow of reactor feed stream (stream 6)                             | XMEAS(6)   | kg/h  |
-| SMEASXA(7)             | Composition of component A in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXB(7)             | Composition of component B in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXC(7)             | Composition of component C in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXD(7)             | Composition of component D in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXE(7)             | Composition of component E in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXF(7)             | Composition of component F in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXG(7)             | Composition of component G in reactor feed stream (stream 6)            |            | mol%  |
-| SMEASXH(7)             | Composition of component H in reactor feed stream (stream 6)            |            | mol%  |
-|                        |                                                                         |            |       |
-|                        |                                                                         |            |       |
-|                        |                                                                         |            |       |
+| COSTEP Result Variable | Description                                                                        | Other Name | Unit  |
+| ---------------------- | ---------------------------------------------------------------------------------- | ---------- | ----- |
+| SMEAST(1)              | Temperature of feed stream of component A (stream 1)                               |            | &degC |
+| SMEASP(1)              | Pressure of feed stream of component A (stream 1)                                  |            | kPa   |
+| SMEASF(1)              | Mass flow of feed stream of component A (stream 1)                                 | XMEAS(1)   | kg/h  |
+| SMEASXA(1)             | Composition of component A in feed stream of component A (stream 1)                |            | mol%  |
+| SMEASXB(1)             | Composition of component B in feed stream of component A (stream 1)                |            | mol%  |
+| SMEAST(2)              | Temperature of feed stream of component D (stream 2)                               |            | &degC |
+| SMEASP(2)              | Pressure of feed stream of component D (stream 2)                                  |            | kPa   |
+| SMEASF(2)              | Mass flow of feed stream of component D (stream 2)                                 | XMEAS(2)   | kg/h  |
+| SMEASXB(2)             | Composition of component B in feed stream of component D (stream 2)                |            | mol%  |
+| SMEASXD(2)             | Composition of component D in feed stream of component D (stream 2)                |            | mol%  |
+| SMEAST(3)              | Temperature of feed stream of component E (stream 3)                               |            | &degC |
+| SMEASP(3)              | Pressure of feed stream of component E (stream 3)                                  |            | kPa   |
+| SMEASF(3)              | Mass flow of feed stream of component E (stream 3)                                 | XMEAS(3)   | kg/h  |
+| SMEASXE(3)             | Composition of component E in feed stream of component E (stream 3)                |            | mol%  |
+| SMEASXF(3)             | Composition of component F in feed stream of component E (stream 3)                |            | mol%  |
+| SMEAST(4)              | Temperature of feed stream of component A/B/C (stream 4)                           |            | &degC |
+| SMEASP(4)              | Pressure of feed stream of component A/B/C (stream 4)                              |            | kPa   |
+| SMEASF(4)              | Mass flow of feed stream of component A/B/C (stream 4)                             | XMEAS(4)   | kg/h  |
+| SMEASXA(4)             | Composition of component A in feed stream of component A/B/C (stream 4)            |            | mol%  |
+| SMEASXB(4)             | Composition of component B in feed stream of component A/B/C (stream 4)            |            | mol%  |
+| SMEASXC(4)             | Composition of component C in feed stream of component A/B/C (stream 4)            |            | mol%  |
+| SMEAST(5)              | Temperature of stripper recycle stream (stream 5)                                  |            | &degC |
+| SMEASP(5)              | Pressure of stripper recycle stream (stream 5)                                     | XMEAS(16)  | kPa   |
+| SMEASF(5)              | Mass flow of stripper recycle stream (stream 5)                                    |            | kg/h  |
+| SMEASXA(5)             | Composition of component A in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEASXB(5)             | Composition of component B in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEASXC(5)             | Composition of component C in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEASXD(5)             | Composition of component D in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEASXE(5)             | Composition of component E in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEASXF(5)             | Composition of component F in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEASXG(5)             | Composition of component G in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEASXH(5)             | Composition of component H in stripper recycle stream (stream 5)                   |            | mol%  |
+| SMEAST(6)              | Temperature of reactor feed stream (stream 6)                                      |            | &degC |
+| SMEASP(6)              | Pressure of reactor feed stream (stream 6)                                         | XMEAS(16)  | kPa   |
+| SMEASF(6)              | Mass flow of reactor feed stream (stream 6)                                        | XMEAS(6)   | kg/h  |
+| SMEASXA(6)             | Composition of component A in reactor feed stream (stream 6)                       | XMEAS(23)  | mol%  |
+| SMEASXB(6)             | Composition of component B in reactor feed stream (stream 6)                       | XMEAS(24)  | mol%  |
+| SMEASXC(6)             | Composition of component C in reactor feed stream (stream 6)                       | XMEAS(25)  | mol%  |
+| SMEASXD(6)             | Composition of component D in reactor feed stream (stream 6)                       | XMEAS(26)  | mol%  |
+| SMEASXE(6)             | Composition of component E in reactor feed stream (stream 6)                       | XMEAS(27)  | mol%  |
+| SMEASXF(6)             | Composition of component F in reactor feed stream (stream 6)                       | XMEAS(28)  | mol%  |
+| SMEASXG(6)             | Composition of component G in reactor feed stream (stream 6)                       |            | mol%  |
+| SMEASXH(6)             | Composition of component H in reactor feed stream (stream 6)                       |            | mol%  |
+| SMEAST(7)              | Temperature of reactor product stream (stream 7)                                   | XMEAS(9)   | &degC |
+| SMEASP(7)              | Pressure of reactor product stream (stream 7)                                      | XMEAS(7)   | kPa   |
+| SMEASF(7)              | Mass flow of reactor product stream (stream 7)                                     |            | kg/h  |
+| SMEASXA(7)             | Composition of component A in reactor product stream (stream 7)                    |            | mol%  |
+| SMEASXB(7)             | Composition of component B in reactor product stream (stream 7)                    |            | mol%  |
+| SMEASXC(7)             | Composition of component C in reactor product stream (stream 7)                    |            | mol%  |
+| SMEASXD(7)             | Composition of component D in reactor product stream (stream 7)                    |            | mol%  |
+| SMEASXE(7)             | Composition of component E in reactor product stream (stream 7)                    |            | mol%  |
+| SMEASXF(7)             | Composition of component F in reactor product stream (stream 7)                    |            | mol%  |
+| SMEASXG(7)             | Composition of component G in reactor product stream (stream 7)                    |            | mol%  |
+| SMEASXH(7)             | Composition of component H in reactor product stream (stream 7)                    |            | mol%  |
+| SMEAST(8)              | Temperature of separator recycle stream after compressor (stream 8)                |            | &degC |
+| SMEASP(8)              | Pressure of separator recycle stream after compressor (stream 8)                   | XMEAS(16)  | kPa   |
+| SMEASF(8)              | Mass flow of separator recycle stream after compressor (stream 8)                  | XMEAS(5)   | kg/h  |
+| SMEASXA(8)             | Composition of component A in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEASXB(8)             | Composition of component B in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEASXC(8)             | Composition of component C in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEASXD(8)             | Composition of component D in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEASXE(8)             | Composition of component E in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEASXF(8)             | Composition of component F in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEASXG(8)             | Composition of component G in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEASXH(8)             | Composition of component H in separator recycle stream after compressor (stream 8) |            | mol%  |
+| SMEAST(9)              | Temperature of purge stream (stream 9)                                             |            | &degC |
+| SMEASP(9)              | Pressure of purge stream (stream 9)                                                |            | kPa   |
+| SMEASF(9)              | Mass flow of purge stream (stream 9)                                               |            | kg/h  |
+| SMEASXA(9)             | Composition of component A in purge stream (stream 9)                              | XMEAS(29)  | mol%  |
+| SMEASXB(9)             | Composition of component B in purge stream (stream 9)                              | XMEAS(30)  | mol%  |
+| SMEASXC(9)             | Composition of component C in purge stream (stream 9)                              | XMEAS(31)  | mol%  |
+| SMEASXD(9)             | Composition of component D in purge stream (stream 9)                              | XMEAS(32)  | mol%  |
+| SMEASXE(9)             | Composition of component E in purge stream (stream 9)                              | XMEAS(33)  | mol%  |
+| SMEASXF(9)             | Composition of component F in purge stream (stream 9)                              | XMEAS(34)  | mol%  |
+| SMEASXG(9)             | Composition of component G in purge stream (stream 9)                              | XMEAS(35)  | mol%  |
+| SMEASXH(9)             | Composition of component H in purge stream (stream 9)                              | XMEAS(36)  | mol%  |
+| SMEAST(10)             | Temperature of separator underflow stream (stream 10)                              |            | &degC |
+| SMEASP(10)             | Pressure of separator underflow stream (stream 10)                                 |            | kPa   |
+| SMEASF(10)             | Mass flow of separator underflow stream (stream 10)                                |            | kg/h  |
+| SMEASXA(10)            | Composition of component A separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXB(10)            | Composition of component B separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXC(10)            | Composition of component C separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXD(10)            | Composition of component D separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXE(10)            | Composition of component E separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXF(10)            | Composition of component F separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXG(10)            | Composition of component G separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXH(10)            | Composition of component H separator underflow stream (stream 10)                  |            | mol%  |
+| SMEAST(11)             | Temperature of separator underflow stream (stream 10)                              |            | &degC |
+| SMEASP(11)             | Pressure of separator underflow stream (stream 10)                                 |            | kPa   |
+| SMEASF(11)             | Mass flow of separator underflow stream (stream 10)                                |            | kg/h  |
+| SMEASXA(11)            | Composition of component A separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXB(11)            | Composition of component B separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXC(11)            | Composition of component C separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXD(11)            | Composition of component D separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXE(11)            | Composition of component E separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXF(11)            | Composition of component F separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXG(11)            | Composition of component G separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXH(11)            | Composition of component H separator underflow stream (stream 10)                  |            | mol%  |
+| SMEAST(12)             | Temperature of separator underflow stream (stream 10)                              |            | &degC |
+| SMEASP(12)             | Pressure of separator underflow stream (stream 10)                                 |            | kPa   |
+| SMEASF(12)             | Mass flow of separator underflow stream (stream 10)                                |            | kg/h  |
+| SMEASXA(12)            | Composition of component A separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXB(12)            | Composition of component B separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXC(12)            | Composition of component C separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXD(12)            | Composition of component D separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXE(12)            | Composition of component E separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXF(12)            | Composition of component F separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXG(12)            | Composition of component G separator underflow stream (stream 10)                  |            | mol%  |
+| SMEASXH(12)            | Composition of component H separator underflow stream (stream 10)                  |            | mol%  |
 
 ---
 
