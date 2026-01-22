@@ -5,23 +5,32 @@ The complete and open Simulink of the Tennessee Eastman process (COSTEP) model i
 
 ---
 
-## **2. Directory Contents
+## **2. Directory Contents**
 
-This directory contains Simulink and MATLAB code as described in the paper  **A complete and open Simulink model of the Tennessee Eastman process, J. Vosloo, K. Uren and G. Van Schoor** 
+This directory contains Simulink and MATLAB code as described in the paper  **A complete and open Simulink model of the Tennessee Eastman process, J. Vosloo, K. Uren and G. Van Schoor**. 
 
 | Filename          | Description                                                                            |
 | ----------------- | -------------------------------------------------------------------------------------- |
 | COSTEP.slx        | Simulink model of the complete and open Tennessee Eastman process                      |
-| mylib.slx         | The custom library                                                                     |
-| COSTEP_Auto.slx   | Simulink model of the complete and open Tennessee Eastman process                      |
-| Auto_run_COSTEP.m | Example of MATLAB code that can be used to automatically generate various sets of data |
 | COSTEP_Exergy.slx | COSTEP model with an added exergy analysis function                                    |
+| mylib.slx         | The custom library                                                                     |
+| Run_COSTEP.m      | Example of MATLAB code that can be used to automatically generate various sets of data |
+| G.mat             | Random noise parameter for different runs of the model                                 |
+| IDV.mat           | Fault number indicator values for automatic run of several scenarios                   |
 
 ---
 
-## **3. Configuring the Simulink Model**
+## **3. System Requirements**
 
-### **3.1 Dedicated Experiment Block**
+- **MATLAB R2024b** (or later)
+- **Simulink**
+- The following toolboxes:
+  - *Signal Processing Toolbox*
+  - *DSP Toolbox*
+
+## **4. Configuring the Simulink Model**
+
+### **4.1 Dedicated Experiment Block**
 
 To conduct an experiment, create a dedicated block in Simulink to execute your chosen FSO(s). For example:
 
